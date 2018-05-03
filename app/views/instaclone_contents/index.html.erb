@@ -7,7 +7,7 @@
 <div class="container">
   <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
     <p><%= notice %></p>
-    <button type="button" class="btn btn-primary btn-lg"><%= link_to "投稿する", new_instaclone_content_path %></button>
+    <button type="button" class="btn btn-primary btn-lg"><%= link_to "投稿する", new_instaclone_content_path, class: 'btn btn-sm btn-default' %></button>
 
     <% @instaclone_contents.each do |instaclone_content| %>
     
@@ -32,13 +32,13 @@
         <%= instaclone_content.user.name if instaclone_content.user %></p>
       
         <% if instaclone_content.user_id == current_user.id %>
-          <button type="button" class="btn btn-primary btn-lg"><%= link_to "編集", edit_instaclone_content_path(instaclone_content.id), class: 'btn btn-default btn-sm btn-success' %></button>
-          <button type="button" class="btn btn-primary btn-lg"><%= link_to "削除", instaclone_content_path(instaclone_content.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %></button>
+          <button type="button" class="btn btn-primary btn-lg"><%= link_to "編集", edit_instaclone_content_path(instaclone_content.id), class: 'btn btn-sm btn-success' %></button>
+          <button type="button" class="btn btn-primary btn-lg"><%= link_to "削除", instaclone_content_path(instaclone_content.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-sm btn-danger' %></button>
         <% else %>
           <% if current_user.favorites.find_by(instaclone_content_id: instaclone_content.id).present? %>
-            <button type="button" class="btn btn-primary btn-lg"><%= link_to "お気に入り解除", favorite_path(current_user.favorites.find_by(instaclone_content_id: instaclone_content.id).id), method: :delete, class: 'btn btn-default btn-sm btn-success' %></button>
+            <button type="button" class="btn btn-primary btn-lg"><%= link_to "お気に入り解除", favorite_path(current_user.favorites.find_by(instaclone_content_id: instaclone_content.id).id), method: :delete, class: 'btn btn-sm btn-danger' %></button>
           <% else %>
-            <button type="button" class="btn btn-primary btn-lg"><%= link_to "お気に入り登録", favorites_path(instaclone_content_id: instaclone_content.id), method: :post, class: 'btn btn-default btn-sm btn-success' %></button>
+            <button type="button" class="btn btn-primary btn-lg"><%= link_to "お気に入り登録", favorites_path(instaclone_content_id: instaclone_content.id), method: :post, class: 'btn btn-sm btn-success' %></button>
           <% end %>
         <% end %>
       </div>
