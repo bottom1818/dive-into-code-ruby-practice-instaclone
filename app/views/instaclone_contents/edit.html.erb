@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+
+<%= form_for(@instaclone_content) do |f| %>
+  <%= f.label :タイトル　%>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :画像 %>
+  <%= f.file_field :image %>
+  <br>
+
+  <%= f.label :コメント %>
+  <%= f.text_field :content %>
+  <br>
+
+  <%= f.submit %>
+
+<% end %>
+
+　</div>
+</div>  
+
+<%= link_to "投稿一覧画面にもどる", instaclone_contents_path %>
+
+

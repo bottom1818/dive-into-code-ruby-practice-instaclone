@@ -1,0 +1,49 @@
+<div class="body">
+  <p class="flash"><%= notice %><%= alert %></p>
+  <img src="<%= asset_path "instaclone_main.jpeg" %>">
+</div>
+
+
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+    <p><%= notice %></p>
+    <button type="button" class="btn btn-primary btn-lg"><%= link_to "投稿する", new_instaclone_content_path %></button>
+
+    <% @instaclone_contents.each do |instaclone_content| %>
+    
+　　　<div style="background-color:#A9D0F5;color:#ffffff">タイトル</div>
+
+      <div class="row">
+        <h4><strong><%= instaclone_content.title %></strong></h4>
+　　　  <div style="background-color:#a9a9a9;color:#ffffff">画像</div>
+
+
+        <p><%= image_tag(instaclone_content.image)  %></p>
+        <%#= hidden_field_tag :"cache[image]", @instaclone_content.image.cache_name %>
+
+
+　  　　<div style="background-color:#a9a9a9;color:#ffffff">コメント</div>
+
+        <p><%= instaclone_content.content %></p>
+
+　  　　<div style="background-color:#a9a9a9;color:#ffffff">投稿者</div>
+
+        <p>
+        <%= instaclone_content.user.name if instaclone_content.user %></p>
+      
+        <% if instaclone_content.user_id == current_user.id %>
+          <button type="button" class="btn btn-primary btn-lg"><%= link_to "編集", edit_instaclone_content_path(instaclone_content.id), class: 'btn btn-default btn-sm btn-success' %></button>
+          <button type="button" class="btn btn-primary btn-lg"><%= link_to "削除", instaclone_content_path(instaclone_content.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %></button>
+        <% else %>
+          <% if current_user.favorites.find_by(instaclone_content_id: instaclone_content.id).present? %>
+            <button type="button" class="btn btn-primary btn-lg"><%= link_to "お気に入り解除", favorite_path(current_user.favorites.find_by(instaclone_content_id: instaclone_content.id).id), method: :delete, class: 'btn btn-default btn-sm btn-success' %></button>
+          <% else %>
+            <button type="button" class="btn btn-primary btn-lg"><%= link_to "お気に入り登録", favorites_path(instaclone_content_id: instaclone_content.id), method: :post, class: 'btn btn-default btn-sm btn-success' %></button>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

@@ -1,0 +1,24 @@
+<h1><%= @user.name %>のページ</h1>
+
+<p>メールアドレス: <%= @user.email %></p>
+
+<p><div style="background-color:#a9a9a9;color:#ffffff">お気に入りの一覧</div></p>
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+    <% @favorite_instaclone_contents.each do |instaclone_content| %>
+　　　<div style="background-color:#A9D0F5;color:#ffffff">タイトル</div>
+      <div class="row">
+      
+      <h4><strong><%= instaclone_content.title %></strong></h4>
+　　　<div style="background-color:#a9a9a9;color:#ffffff">画像</div>
+      <p><%= image_tag(instaclone_content.image)  %></p>
+      <%#= hidden_field_tag :"cache[image]", @instaclone_content.image.cache_name %>
+
+      <div style="background-color:#a9a9a9;color:#ffffff">コメント</div>
+      <p><%= instaclone_content.content %></p>
+
+　　　<div style="background-color:#a9a9a9;color:#ffffff">投稿者</div>
+      <p><%= instaclone_content.user.name if instaclone_content.user %></p>
+    <% end %>
+  </div>
+</div>

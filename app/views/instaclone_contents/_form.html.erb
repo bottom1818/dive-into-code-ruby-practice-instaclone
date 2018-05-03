@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_for(@instaclone_content, url: choose_new_or_edit) do |f| %>
+
+<%#= form_for(@instaclone_content, url:confirm_instaclone_contents_path) do |f| %>
+
+  <% if @instaclone_content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @instaclone_content.errors.count %>件のエラーがあります。</h2>
+
+      <ul>
+      <% @instaclone_content.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :タイトル %><br>
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :画像 %><br>
+    <%= image_tag(@instaclone_content.image.url) if @instaclone_content.image.url %>
+    <%= f.file_field :image, id: :instaclone_content_image %>
+    <%= f.hidden_field :image_cache %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :コメント %><br>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to "投稿一覧画面にもどる", instaclone_contents_path %>
