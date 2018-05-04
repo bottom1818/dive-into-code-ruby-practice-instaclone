@@ -7,9 +7,9 @@
       <%= f.hidden_field :image %>
       <%= f.hidden_field :content %>
       <p>タイトル:<%= @instaclone_content.title %></p>
-      <p>画像:<%= image_tag(@instaclone_content.image.url) %>
+      
+      <p>画像:<%= image_tag(@instaclone_content.image) %>
       <%= hidden_field_tag :"cache[image]",@instaclone_content.image.cache_name %>
-     
       
       <p>コメント:<%= @instaclone_content.content %></p>
       <%= f.submit "登録", class: 'btn btn-primary btn-block' %>

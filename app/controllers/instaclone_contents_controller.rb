@@ -21,7 +21,9 @@ class InstacloneContentsController < ApplicationController
   
   def create
     @instaclone_content = InstacloneContent.new(instaclone_contents_params)
-    @instaclone_content.image.retrieve_from_cache!  params[:cache][:image]
+    if !params[:cache].nil? && params[:cache][:image].present?
+      @instaclone_content.image.retrieve_from_cache!  params[:cache][:image]
+    end
     # @instaclone_content.user_id = current_user.id
     @instaclone_content.user = current_user
     
