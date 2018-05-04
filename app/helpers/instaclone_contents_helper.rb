@@ -3,8 +3,7 @@ module InstacloneContentsHelper
     if action_name == 'new' || action_name == 'confirm'
       confirm_instaclone_contents_path
     elsif action_name == 'edit'
-      instaclone_content_params
-      instaclone_contents_path
+      instaclone_content_path
     end
   end
 end

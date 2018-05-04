@@ -41,16 +41,15 @@ class InstacloneContentsController < ApplicationController
   end
   
   def update
-    @instaclone_content = InstacloneContent.find(params[:id])
-    
     if @instaclone_content.update(instaclone_contents_params)
+      # 編集したことをメールで通知します
       InstacloneContentsMailer.instaclone_contents_mail(@instaclone_content).deliver
-      redirect_to instaclone_contents_path, notice: "投稿を更新しました！"
+      redirect_to instaclone_contents_path, notice: "ブログを編集しました！"
     else
       render 'edit'
- 　  end
+    end
   end
-  
+
   def destroy
     # @instaclone_content = InstacloneContent.find(params[:id])
     @instaclone_content.destroy
